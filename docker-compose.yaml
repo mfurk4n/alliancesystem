@@ -1,0 +1,20 @@
+version: '3'
+services:
+  myapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgresqldb:5432/alliancesystem
+    depends_on:
+      - postgresqldb
+  postgresqldb:
+    image: postgres:13
+    ports:
+      - 5435:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=1234
+      - POSTGRES_DB=alliancesystem
